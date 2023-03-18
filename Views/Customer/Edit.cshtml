@@ -1,0 +1,58 @@
+﻿@using GBCSporting_Team_Amigos.Models
+@model Customer
+@{
+    ViewData["Title"] = ViewBag.Action + "Customer";
+}
+
+<div class="pt-4">
+    <h2 class="pb-3">@ViewData["Title"]</h2>
+</div>
+
+<form asp-action="@ViewBag.Action" method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <input type="hidden" asp-for="CustomerId" />
+    <div class="form-group">
+        <label asp-for="Firstname" class="control-label"></label>
+        <input asp-for="Firstname" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Lastname" class="control-label"></label>
+        <input asp-for="Lastname" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Address" class="control-label"></label>
+        <input asp-for="Address" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="City" class="control-label"></label>
+        <input asp-for="City" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="State" class="control-label"></label>
+        <input asp-for="State" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="PostalCode" class="control-label"></label>
+        <input asp-for="PostalCode" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="CountryId" class="control-label"></label>
+        <select asp-for="CountryId" class="form-control"
+                asp-items="@(new SelectList(ViewBag.Countries, "CountryId", "CountryName"))">
+                <option value=" ">Select a country...</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label asp-for="Email" class="control-label"></label>
+        <input asp-for="Email" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Phone" class="control-label"></label>
+        <input asp-for="Phone" class="form-control" />
+    </div>
+        <br />
+    <div class="form-group">
+        <button type="submit" class="btn btn-info">Save</button>
+        <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+    </div>
+</form>

@@ -1,0 +1,42 @@
+﻿@using GBCSporting_Team_Amigos.Models
+
+@model IEnumerable<Product>
+@{
+    ViewData["Title"] = "Manage Products";
+}
+
+<div class="pt-4">
+  <h2 class="pb-2">@ViewData["Title"]</h2>
+  <table class="table table-bordered">
+
+    <thead class="bg-info">
+      <tr>
+        <th scope="col">Code</th>
+        <th scope="col">Name</th>
+        <th scope="col">Price</th>
+        <th scope="col">Release Date</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+            @foreach(Product prd in Model)
+            {
+                <tr>
+                    <td>@prd.Code</td>
+                    <td>@prd.Name</td>
+                    <td>@prd.Price.ToString("C")</td>
+                    <td>@prd.ReleaseDate</td>
+                    <td>
+                       <a type="button" class="btn btn-primary" asp-controller="Product" asp-route-id="@prd.ProductId" asp-action="Edit">Edit</a>
+                    </td> 
+                    <td>
+                       <a type="button" class="btn btn-danger" asp-controller="Product" asp-route-id="@prd.ProductId" asp-action="Delete">Delete</a>
+                    </td> 
+                </tr>
+            }
+    </tbody>
+  </table>
+   <a type="submit" class="btn btn-info" asp-action="Add">Add Product</a>
+</div>

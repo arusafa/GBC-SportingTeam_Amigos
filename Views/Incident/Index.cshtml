@@ -1,0 +1,66 @@
+﻿@using GBCSporting_Team_Amigos.Models
+@model IEnumerable<Incident>
+@{
+    ViewData["Title"] = "Manage Incidents";
+}
+
+<div class="pt-4">
+  <h2 class="pb-2">@ViewData["Title"]</h2>
+  <table class="table table-bordered">
+
+    <thead class="bg-info">
+      <tr>
+        <th scope="col">Title</th>
+        <th scope="col">Customer</th>
+        <th scope="col">Product</th>
+        <th scope="col">Date Opened</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+            @foreach(Incident inc in Model)
+            {
+                bool Notvalid = false;
+                Customer cst = ViewBag.Customers.Find(inc.CustomerId);
+                Product prd = ViewBag.Products.Find(inc.ProductId);
+                <tr>
+                    <td>@inc.Title</td>
+                    <td>@if (cst != null)
+                        {
+                            @cst.FullName
+                        }
+                        else
+                        {
+                            Notvalid = true;
+                        }
+                    </td>
+                    <td>@if (prd != null)
+                        {
+                            @prd.Name
+                        }
+                        else
+                        {
+                            Notvalid = true;
+                        }
+                    </td>
+                    <td>@Html.DisplayFor(modelItem => inc.OpenDate)</td>
+                    @if (!Notvalid)
+                    {
+                         <td>
+                            <a type="button" class="btn btn-primary" asp-controller="Incident" asp-route-id="@inc.IncidentId" asp-action="Edit">Edit</a>
+                        </td>
+                    }
+                    else
+                    {
+                       <td></td>
+                    }
+                    <td>
+                            <a type="button" class="btn btn-danger" asp-controller="Incident" asp-route-id="@inc.IncidentId" asp-action="Delete">Delete</a>
+                    </td>
+                </tr>
+            }
+    </tbody>
+  </table>
+        <a type="submit" class="btn btn-info" asp-action="Add">Add Incident</a>
+</div>

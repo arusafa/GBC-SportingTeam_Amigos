@@ -1,0 +1,36 @@
+﻿@using GBCSporting_Team_Amigos.Models
+@model IEnumerable<Customer>
+@{
+    ViewData["Title"] = "Customer";
+}
+
+<div class="pt-4">
+  <h2 class="pb-2">Manage Customers</h2>
+  <table class="table table-bordered">
+    <thead class="bg-info">
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">City</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+      </tr>
+
+    </thead>
+    <tbody>
+      @foreach(Customer cst in Model)
+      {
+        <tr class="table table-light">
+          <td>@String.Format("{0} {1}", cst.Firstname, cst.Lastname)</td>
+          <td>@cst.Email</td>
+          <td>@cst.City</td>
+
+          <td><a type="button" class="btn btn-primary" asp-controller="Customer" asp-action="Edit" asp-route-id="@cst.CustomerId">Edit</a></td>
+          <td><a type="button" class="btn btn-danger" asp-controller="Customer" asp-action="Delete" asp-route-id="@cst.CustomerId">Delete</a></td>
+
+        </tr>
+      }
+    </tbody>
+  </table>
+  <a type="submit" class="btn btn-info" asp-action="Add">Add Customer</a>
+</div>

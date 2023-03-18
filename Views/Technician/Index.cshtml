@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Technician>
+@{
+  ViewData["Title"] = "Technicians";
+}
+
+<div class="pt-4">
+  <h2 class="pb-2">Manage Technicians</h2>
+  <table class="table table-bordered">
+    <thead class="bg-info">
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Phone</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+      </tr>
+
+    </thead>
+    <tbody>
+      @foreach(Technician tech in Model)
+      {
+        <tr class="table table-light">
+          <td>@tech.Name</td>
+          <td>@tech.Email</td>
+          <td>@tech.Phone</td>
+          <td><a type="button" class="btn btn-primary" asp-controller= "Technician" asp-action= "Edit" asp-route-id= "@tech.TechnicianId">Edit</a></td>
+          <td><a type="button" class="btn btn-danger" asp-controller= "Technician" asp-action= "Delete" asp-route-id= "@tech.TechnicianId">Delete</a></td>
+        </tr>
+      }
+    </tbody>
+  </table>
+  <a type="button" class="btn btn-info" asp-area="" asp-controller="Technician" asp-action="Add">Add Technician</a>
+</div> 

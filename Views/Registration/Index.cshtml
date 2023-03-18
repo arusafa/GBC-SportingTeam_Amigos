@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Registration>
+@{
+    ViewData["Title"] = "Manage Registrations";
+}
+
+<div class="pt-4">
+    <h2 class="pb-2">@ViewData["Title"]</h2>
+    <table class="table table-bordered">
+        <thead class="bg-info">
+            <tr>
+                <th scope="col">Customer</th>
+                <th scope="col">Product</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
+
+        </thead>
+        <tbody>
+            @foreach (Registration registration in Model)
+            {
+                <tr>
+                    <td>@registration.Customer?.FullName</td>
+                    <td>@registration.Product?.Name</td>
+                    <td><a type="button" class="btn btn-primary" asp-action="Edit" asp-route-id="@registration.RegistrationId">Edit</a></td>
+                    <td><a type="button" class="btn btn-danger" asp-action="Delete" asp-route-id="@registration.RegistrationId">Delete</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <a type="button" class="btn btn-info" asp-action="Add">Add Registration</a>
+</div>
